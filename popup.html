@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Surf Forecast RJ</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="card">
+    <header class="header">
+      <div class="logo-title">
+        <span class="icon">🏄‍♂️</span>
+        <h1>Surf RJ Forecast & Marés</h1>
+      </div>
+      <select id="spot-select" class="spot-select">
+        <option value="arpoador">Arpoador</option>
+        <option value="praia_diabo">Praia do Diabo</option>
+        <option value="copacabana_p5">Copacabana - Posto 5</option>
+        <option value="copacabana_p6">Copacabana - Posto 6</option>
+        <option value="leme">Leme</option>
+        <option value="grumari">Grumari</option>
+        <option value="prainha">Prainha</option>
+        <option value="recreio">Recreio</option>
+        <option value="barra">Barra da Tijuca</option>
+      </select>
+    </header>
+
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Consultando dados marítimos e marés...</p>
+    </div>
+
+    <div id="content" class="content hidden">
+      <!-- Condições Atuais -->
+      <section class="current-conditions">
+        <div class="status-badge" id="condition-badge">BOA</div>
+        <div class="main-wave">
+          <span class="wave-height" id="wave-height">--</span>
+          <span class="wave-unit">m</span>
+        </div>
+        <p class="subtitle" id="spot-name">Arpoador</p>
+
+        <div class="grid-metrics">
+          <div class="metric">
+            <span class="label">Swell (Período)</span>
+            <span class="value" id="wave-period">-- s</span>
+          </div>
+          <div class="metric">
+            <span class="label">Direção Swell</span>
+            <span class="value" id="wave-dir">--</span>
+          </div>
+          <div class="metric">
+            <span class="label">Vento</span>
+            <span class="value" id="wind-speed">-- km/h</span>
+          </div>
+          <div class="metric">
+            <span class="label">Direção Vento</span>
+            <span class="value" id="wind-dir">--</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gráfico de Marés -->
+      <section class="tide-section">
+        <h3>Variação de Maré Hoje</h3>
+        <div class="tide-card">
+          <svg id="tide-svg" viewBox="0 0 300 90" preserveAspectRatio="none"></svg>
+          <div class="tide-info">
+            <span>🔴 Maré Alta: <strong id="tide-high">-- m</strong></span>
+            <span>🔵 Maré Baixa: <strong id="tide-low">-- m</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Previsão Semanal -->
+      <section class="forecast-section">
+        <h3>Previsão para 7 Dias</h3>
+        <div class="forecast-list" id="forecast-list"></div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <span>Open-Meteo Marine API</span>
+      <button id="refresh-btn" class="refresh-btn" title="Atualizar">🔄</button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
